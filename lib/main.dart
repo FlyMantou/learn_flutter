@@ -29,7 +29,8 @@ class LunchState extends State<ShowTimeApp>{
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LuncherImage(),
+      //home: LuncherImage(),
+      home: Demo(),
     );
   }
 }
@@ -37,6 +38,7 @@ class LuncherImage extends StatefulWidget{
   @override
   State<StatefulWidget> createState() =>LuncherImageState();
 }
+//TODO 启动画面
 class LuncherImageState extends State<LuncherImage>{
   showNextPage(){
     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder:(context){
@@ -74,5 +76,118 @@ class LuncherImageState extends State<LuncherImage>{
         ),
       ],
     );
+  }
+}
+
+
+class Demo extends StatefulWidget {
+  @override
+  DemoState createState() => new DemoState();
+}
+
+class DemoState extends State<Demo> {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('Demo'),
+      ),
+      body: new GridView.count(
+          // 创建几列
+          crossAxisCount: 2,
+          // Axis.horizontal表示横向滑动，scrollDirection: Axis.vertical表示纵向滑动
+          scrollDirection: Axis.vertical,
+          // 列之间的间距
+          crossAxisSpacing: 2.0,
+          // 行之间的间距
+          mainAxisSpacing: 2.0,
+          // 默认false 是否根据子孩子的宽高自动包裹item自身
+          shrinkWrap: false,
+          // true表示数据倒序排列 false表示顺序排列
+          reverse: false,
+          // 子孩子的比例
+          childAspectRatio: 1.0,
+          // 设置子孩子item,这里传入子孩子控件
+          children: getChildren(),
+        ),
+    );
+  }
+  
+  List<Widget> getChildren(){
+    List<Widget> childrenList = [];
+    for (var i=0;i<20;i++) {
+      childrenList.add(new Child());
+    }
+    return childrenList;
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(Demo oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
+}
+
+
+
+class Child extends StatefulWidget {
+  @override
+  ChildState createState() => new ChildState();
+}
+
+class ChildState extends State<Child> {
+  @override
+  Widget build(BuildContext context) {
+    return new Text('hahaha',
+          style: new TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w300,
+            fontSize: 20,
+          ),
+          textAlign: TextAlign.center,
+          textDirection: TextDirection.ltr,
+          overflow: TextOverflow.ellipsis,
+          locale: Localizations.localeOf(context),
+        );
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(Child oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
   }
 }
